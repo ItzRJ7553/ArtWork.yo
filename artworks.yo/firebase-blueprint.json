@@ -1,0 +1,91 @@
+{
+  "entities": {
+    "UserProfile": {
+      "title": "UserProfile",
+      "description": "User profile with role (buyer/seller/admin) and contact details",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string" },
+        "name": { "type": "string" },
+        "username": { "type": "string" },
+        "email": { "type": "string" },
+        "avatar": { "type": "string" },
+        "bio": { "type": "string" },
+        "role": { "type": "string", "enum": ["buyer", "seller", "admin"] },
+        "followersCount": { "type": "number" },
+        "followingCount": { "type": "number" },
+        "isGuest": { "type": "boolean" },
+        "isAdmin": { "type": "boolean" },
+        "location": { "type": "string" },
+        "website": { "type": "string" }
+      },
+      "required": ["uid", "name", "email"]
+    },
+    "Artwork": {
+      "title": "Artwork",
+      "description": "Artwork post created by artists/sellers",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "title": { "type": "string" },
+        "creatorId": { "type": "string" },
+        "price": { "type": "number" },
+        "isNFS": { "type": "boolean" },
+        "category": { "type": "string" },
+        "showcaseCategory": { "type": "string" },
+        "image": { "type": "string" },
+        "description": { "type": "string" },
+        "dimensions": { "type": "string" },
+        "medium": { "type": "string" },
+        "year": { "type": "number" },
+        "likes": { "type": "number" },
+        "listingType": { "type": "string" },
+        "isSample": { "type": "boolean" },
+        "featured": { "type": "boolean" },
+        "createdAt": { "type": "number" }
+      },
+      "required": ["id", "title", "creatorId", "price", "image"]
+    },
+    "PurchaseRecord": {
+      "title": "PurchaseRecord",
+      "description": "Order records for purchased artworks",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "artworkId": { "type": "string" },
+        "artworkTitle": { "type": "string" },
+        "artworkImage": { "type": "string" },
+        "creatorName": { "type": "string" },
+        "creatorUsername": { "type": "string" },
+        "price": { "type": "number" },
+        "buyerUid": { "type": "string" },
+        "purchasedAt": { "type": "string" },
+        "status": { "type": "string" },
+        "certificateId": { "type": "string" }
+      },
+      "required": ["id", "artworkId", "artworkTitle", "price"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": "UserProfile",
+      "description": "Collection of user accounts with roles"
+    },
+    "/artworks/{artworkId}": {
+      "schema": "Artwork",
+      "description": "Collection of artwork listings posted by creators and moderated by admin"
+    },
+    "/purchases/{purchaseId}": {
+      "schema": "PurchaseRecord",
+      "description": "Orders and authenticity certificate records"
+    },
+    "/saved/{saveId}": {
+      "schema": "SavedArtwork",
+      "description": "Saved artwork bookmarks"
+    },
+    "/chats/{chatId}": {
+      "schema": "Conversation",
+      "description": "Direct communication between buyers and artists"
+    }
+  }
+}

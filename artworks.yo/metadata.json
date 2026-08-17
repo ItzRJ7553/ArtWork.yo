@@ -1,0 +1,6 @@
+{
+  "name": "artWorks.yo",
+  "description": "Discover, showcase, buy, and communicate about artwork.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
